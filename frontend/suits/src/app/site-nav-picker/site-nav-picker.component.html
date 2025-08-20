@@ -1,0 +1,23 @@
+
+<mat-tab-group class="full-width full-height tabs"  preserveContent="true" animationDuration="0ms">
+  <mat-tab label="Dossiers">
+    <app-case-listing/>
+  </mat-tab>
+  <mat-tab label="Tâches">
+    <app-task-listing/>
+  </mat-tab>
+</mat-tab-group>
+<div class="flex-row gap-0 full-width fixed bottom">
+  <a mat-icon-button href="/app/profile" aria-label="Profil">
+    <mat-icon class="m-0">account_circle</mat-icon>
+  </a>
+  <button mat-icon-button aria-label="Notifications">
+    <mat-icon class="m-0">circle_notifications</mat-icon>
+  </button>
+  <a mat-icon-button href="/app/organisation" aria-label="Organisation">
+    <mat-icon class="m-0">corporate_fare</mat-icon>
+  </a>
+  <a mat-icon-button aria-label="Déconnection" (click)="logout()">
+    <mat-icon class="m-0">logout</mat-icon>
+  </a>
+</div>

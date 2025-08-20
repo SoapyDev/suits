@@ -1,0 +1,29 @@
+<div class="container flex-col nav-content gap-16 justify-start align-start l-1 overflow-x-hidden">
+
+  <div class="flex-row full-width justify-end align-center mt-8">
+    <button mat-icon-button (click)="openNewFileDialog()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+
+  @if (cases.length === 0) {
+    <h4 class="full-width text-center">
+      Aucun dossier en cours
+    </h4>
+  }
+
+  @for (c of cases; track c.id) {
+
+    <div class="flex-row full-width justify-between overflow-x-auto overflow-y-hidden">
+      <a mat-button href="/app/cases/{{c.id}}" class="full-width">
+        <span>
+          {{c.id}}
+        </span>
+      </a>
+
+
+    </div>
+
+  }
+
+</div>

@@ -1,0 +1,81 @@
+<div class="full-width h-screen flex-col">
+
+  <mat-card appearance="raised" class="justify-center w-max-600 full-width">
+
+    <mat-card-header class="mt-16 mb-32">
+      <h2 class="text-center full-width">S.U.I.T.S</h2>
+    </mat-card-header>
+
+
+    <mat-card-content class="full-height mt-32 mb-32">
+      <form class="flex-col" (ngSubmit)="onLogin()">
+
+        <mat-form-field appearance="outline" class="width-80">
+
+          <mat-label>Courriel</mat-label>
+          <input
+            matInput
+            placeholder="julie@cabinet.com"
+            required
+            [formControl]="email"
+          />
+          @if (email.invalid) {
+            <mat-error>{{emailErrorMessage()}}</mat-error>
+          }
+
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline" class="width-80">
+
+          <mat-label>Mot de passe</mat-label>
+          <input
+            matInput
+            [type]="hide() ? 'password' : 'text'"
+            placeholder="************"
+            required
+            minlength="12"
+            matNativeControl="password"
+            [formControl]="password"
+          />
+
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="clickEvent($event)"
+            [attr.aria-label]="'Cacher mot de passe'"
+            [attr.aria-pressed]="hide()"
+          >
+
+            <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+
+          <mat-hint>Lettres {{password.value?.length}}/12</mat-hint>
+          @if (password.invalid) {
+            <mat-error>{{passwordErrorMessage()}}</mat-error>
+          }
+
+        </mat-form-field>
+        <!--<mat-card-actions class="mb-32 mt-32">
+        </mat-card-actions> -->
+        <div class="width-80">
+          <button mat-fab extended aria-label="Connexion au portail" class="full-width" type="submit">Connexion</button>
+        </div>
+        @if (showCredentialsError){
+        <mat-error data-testid="incorrect-credentials"
+          >Mot de passe invalide!</mat-error
+        >
+        } @if (showConnectionError){
+        <mat-error data-testid="incorrect-credentials"
+          >Problème de connexion</mat-error
+        >
+        }
+      </form>
+    </mat-card-content>
+
+
+
+
+  </mat-card>
+
+</div>

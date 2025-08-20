@@ -1,0 +1,17 @@
+<mat-dialog-content>
+  <h3>Nouvel effort</h3>
+  <mat-form-field class="full-width mb-32">
+    <mat-label>Valeur</mat-label>
+    <input type="number" matInput [(ngModel)]="value" placeholder="100.00 $"/>
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <mat-label>Durée</mat-label>
+    <input type="number" matInput [(ngModel)]="duration" placeholder="10.5 h" >
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close (click)="onNoClick()">Annuler</button>
+  <button mat-button (click)="save()">Enregistrer</button>
+</mat-dialog-actions>
+

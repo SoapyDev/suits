@@ -1,0 +1,108 @@
+<div *ngIf="organisation && organisation.teamMembers" class="m-center width-80 flex-col justify-center align-center h-screen">
+
+  <mat-card class="profile-card">
+
+    <mat-card-header>
+      <h2>Profil de l'organisation</h2>
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <form [formGroup]="organisationForm" (ngSubmit)="onSubmitClick()">
+
+        <div *ngFor="let field of parameters" class="field">
+          <div *ngIf="field.key !== 'teamMembers'">
+
+            <button *ngIf="field.key !== 'id' && hasAuthority" mat-icon-button matSuffix class="toggleButton" type="button" (click)="toggleEditMode(field.key)">
+              <mat-icon>{{ isEditMode(field.key) ? 'check' : 'edit_note' }}</mat-icon>
+            </button>
+
+            <strong>{{ field.label }} :</strong>
+
+            <span *ngIf="!isEditMode(field.key)">
+              {{ getOrganisationValue(field.key) }}
+            </span>
+
+            <mat-form-field *ngIf="isEditMode(field.key)">
+              <input matInput [formControlName]="field.key" [type]="field.type" />
+
+              <mat-error *ngIf="isFieldValid(field.key)">
+
+                <ng-container *ngIf="organisationForm.get(field.key)?.hasError('required')">
+                  {{ field.label }} est requis.
+                </ng-container>
+
+                <ng-container *ngIf="organisationForm.get(field.key)?.hasError('maxlength')">
+                  {{ field.label }} doit avoir au maximum {{ field.maxLength }} caractères.
+                </ng-container>
+
+                <ng-container *ngIf="organisationForm.get(field.key)?.hasError('pattern')">
+                  Format invalide pour {{ field.label }}. {{field.errorMsg}}
+                </ng-container>
+
+              </mat-error>
+            </mat-form-field>
+
+            <mat-divider></mat-divider>
+          </div>
+        </div>
+
+        <div class="team-section">
+          <button *ngIf="hasAuthority" mat-icon-button matSuffix class="toggleButton" type="button" (click)="toggleEditTeam()">
+            <mat-icon>{{ editTeam ? 'check' : 'edit_note' }}</mat-icon>
+          </button>
+          <strong>Membres de l’équipe</strong>
+
+          <div *ngIf="editTeam">
+            <button mat-button color="accent" (click)="addTeamMember()">Ajouter un membre</button>
+          </div>
+
+          <div class="groupMember" [formGroup]="organisationForm">
+            <div formArrayName="teamMembers" *ngIf="teamMembersArray.length > 0">
+              <div *ngFor="let memberCtrl of teamMembersArray.controls; let i = index" [formGroupName]="i" class="team-member">
+
+                <div *ngIf="editTeam">
+                  <mat-form-field>
+                    <input matInput formControlName="name" placeholder="Nom" required/>
+                  <mat-error> Le nom est requis.</mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field>
+                    <input matInput formControlName="service" placeholder="Service" required />
+                    <mat-error> Le service est requis.</mat-error>
+                  </mat-form-field>
+
+                  <button mat-icon-button color="warn" (click)="removeTeamMember(i)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+
+                  <mat-divider></mat-divider>
+                </div>
+
+                <span *ngIf="!editTeam">{{ memberCtrl.value.name }} - {{ memberCtrl.value.service }}</span>
+
+              </div>
+
+              <mat-divider *ngIf="!editTeam"></mat-divider>
+            </div>
+          </div>
+        </div>
+
+
+
+  <div class="submitOrganisation" *ngIf=readyToSubmit>
+    <form class="flex-col" (ngSubmit)="onSubmitClick()">
+    <button mat-fab extended aria-label="Soumettre les modifications" class="width-80 justify-center" type="submit">Soumettre les modifications</button>
+    </form>
+  </div>
+  @if (showConfirmationError){
+    <mat-error data-testid="incorrect-credentials">Problème lors de l'enregistrement.</mat-error>
+  } @if (showSetOrganisationConfirmation){
+    <mat-hint class="success-hint"> Enregistrement confirmé! </mat-hint>
+  }
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+

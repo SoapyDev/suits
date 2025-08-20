@@ -1,0 +1,92 @@
+
+.hero-txt{
+  position: absolute;
+  left: 30px;
+}
+h2{
+  font-size: 2rem;
+  font-weight: lighter;
+}
+h3{
+  font-size: 1.8rem;
+  font-weight: lighter;
+}
+
+.open{
+  transform: rotate(0deg);
+}
+.close{
+  transform: rotate(0);
+}
+.our-team, .our-services, .take-contact{
+  margin: 5rem;
+  width: auto;
+  max-width: calc(100dvw);
+}
+
+.our-team, .take-contact{
+  & h3{
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin-bottom: 5rem;
+  }
+}
+
+.team-cards{
+  width: 100%;
+  justify-content: center;
+  gap: 3rem;
+
+}
+.team-card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 2rem;
+  transform: translateZ(0);
+  transition: all .2s;
+  text-align: center;
+  min-height: 300px;
+  min-width: 350px;
+  &:hover{
+    transform: translate3d(0, -20px, 0);
+  }
+
+  & h4{
+    font-size: 1.6rem;
+    font-weight: 300;
+  }
+
+  & h5{
+    font-size: 1.2rem;
+    font-weight: 300;
+    font-style: italic;
+  }
+}
+
+.take-contact {
+  margin: 5rem 0 0 0;
+  max-width: calc(100vw);
+  width: auto;
+  padding: 5rem;
+
+  & h3 {
+    margin-top: 0;
+  }
+
+  background-color: #F0EFF5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 1080px){
+  .take-contact, .our-team{
+    padding: 1rem;
+  }
+
+}

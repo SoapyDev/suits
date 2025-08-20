@@ -1,0 +1,20 @@
+{
+  "name" : "Avocats Associés Durand & Legrand",
+  "shortDescription" : "Notre cabinet d’avocats est fondé sur des valeurs de\nprofessionnalisme, de rigueur et de dévouement au service de la justice. Situé au cœur de\nMontréal, nous accompagnons nos clients dans toutes leurs démarches juridiques avec\nexpertise et intégrité.",
+  "longDescription" : "Notre équipe pluridisciplinaire est composée d’avocats expérimentés spécialisés en droit des\naffaires, droit du travail, droit immobilier, famille et patrimoine. Nous mettons à votre\nservice notre connaissance approfondie du droit pour vous fournir un conseil personnalisé\nadapté à vos besoins spécifiques.\n\nChez Avocats Associés Durand & Legrand, nous privilégions la proximité avec nos clients.\nNotre objectif est de construire une relation de confiance durable basée sur l’écoute et le\ndialogue. Nous vous accompagnons de manière proactive tout au long des procédures judiciaires\nou amiables pour obtenir les meilleurs résultats possibles.\n\nNous sommes résolument tournés vers l'avenir, en intégrant constamment les nouvelles\ntechnologies et les évolutions législatives afin d’offrir une assistance juridique innovante\net performante. Nous restons à votre disposition pour toute consultation ou question\nconcernant vos droits et obligations.\n\nContactez-nous pour découvrir comment Avocats Associés Durand & Legrand peut vous aider à\nnaviguer dans le monde complexe du droit, avec efficacité et sérénité.",
+  "neq" : "2163243423",
+  "taxGSTId" : "12345678",
+  "taxQSTId" : "987654321",
+  "address" : "322 Rue Bleignier",
+  "city" : "Montréal",
+  "country" : "Canada",
+  "postalCode" : "H4A 2A2",
+  "province" : "Québec",
+  "phone" : "123 123-1234",
+  "email" : "info@avocatsdurandlegrand.outlook.com",
+  "teamMembers" : [
+    { "name":"Timothy Leblanc", "service": "Droit des affaires" },
+    { "name":"Boris Meunier", "service": "Droit immobilier" },
+    { "name":"Diane Luiz Santos", "service": "Famille et patrimoine" }
+  ]
+}

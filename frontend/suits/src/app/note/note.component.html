@@ -1,0 +1,23 @@
+<div class="full-width flex-row justify-between mt-16 mb-16">
+  <span class="justify-start">{{note.creator.name}}   {{formatProfession(note.creator.profession)}}</span>
+
+  <div class="flex-row justify-end">
+    <span>{{formatStringDate(note.creationDate)}}</span>
+    <span *ngIf="note.updateDate"> - </span>
+    <small class="text-muted" *ngIf="note.updateDate">Modifié le {{formatStringDate(note.updateDate)}}</small>
+
+    <button *ngIf="isOwner" mat-icon-button matTooltip="Supprimer la note" (click)="onDelete()">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</div>
+
+<mat-form-field class="full-width mb-32" [ngClass]="{ editable: !isReadonly() }">
+  <mat-label>Laisser un commentaire</mat-label>
+  <textarea
+    matInput
+    [(ngModel)]="note.content"
+    (blur)="onBlur()"
+    [readonly]="isReadonly()"
+  ></textarea>
+</mat-form-field>

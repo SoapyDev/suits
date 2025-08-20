@@ -1,0 +1,38 @@
+@if (readonly) {
+  <button mat-icon-button>
+    @if (isCompleted(status)){
+      <mat-icon [ngStyle]="getColor(status)">check_circle</mat-icon>
+    } @else if (isWaiting(status)){
+      <mat-icon [ngStyle]="getColor(status)">pause_circle</mat-icon>
+    } @else {
+      <mat-icon [ngStyle]="getColor(status)">radio_button_unchecked</mat-icon>
+    }
+  </button>
+
+}@else{
+  <button mat-icon-button [matMenuTriggerFor]="statusMenu" matTooltip="Changer le statut">
+    @if (isCompleted(status)){
+      <mat-icon [ngStyle]="getColor(status)">check_circle</mat-icon>
+    } @else if (isWaiting(status)){
+      <mat-icon [ngStyle]="getColor(status)">pause_circle</mat-icon>
+    } @else {
+      <mat-icon [ngStyle]="getColor(status)">radio_button_unchecked</mat-icon>
+    }
+  </button>
+}
+
+
+<mat-menu #statusMenu="matMenu">
+  @for (s of statusList; track s) {
+    <button mat-menu-item class="flex-row align-center justify-start" (click)="updateStatusEvent(s.value)">
+        @if (isCompleted(s.value)){
+          <mat-icon [ngStyle]="getColor(s.value)">check_circle</mat-icon>
+        } @else if ( isWaiting(s.value)){
+          <mat-icon [ngStyle]="getColor(s.value)">pause_circle</mat-icon>
+        } @else {
+          <mat-icon [ngStyle]="getColor(s.value)">radio_button_unchecked</mat-icon>
+        }
+      <span>{{s.name}}</span>
+    </button>
+  }
+</mat-menu>

@@ -1,0 +1,15 @@
+.accordion{
+  & .mat-expansion-panel:not([class*=mat-elevation-z]){
+    box-shadow: none;
+  }
+  & .mat-expansion-panel-header{
+    background-color: #f6f4fc;
+  }
+  & .mat-expansion-panel{
+    background-color: #f6f4fc;
+  }
+}
+.nav-content{
+  height: calc(100dvh - 200px);
+  min-height: 350px;
+}

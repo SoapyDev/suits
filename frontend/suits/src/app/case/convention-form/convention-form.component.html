@@ -1,0 +1,52 @@
+<div class="form-overlay">
+  <mat-card class="card-size-adjustment">
+    <mat-card-content class="form-scrollable-content mt-32 mb-32">
+      <form class="flex-col" [formGroup]="form" (ngSubmit)="onSave()">
+        <h3>Convention d'honoraires</h3>
+        <mat-label>Mandat</mat-label>
+        <mat-form-field appearance="outline" class="width-80">
+          <textarea
+            matInput
+            required
+            formControlName="mandat"></textarea>
+        </mat-form-field>
+
+        <mat-label>Type d'entente</mat-label>
+        <mat-form-field appearance="outline" class="width-80">
+          <mat-select required formControlName="agreementType">
+            <mat-option value="HORAIRE">Horaire</mat-option>
+            <mat-option value="POURCENTAGE">Pourcentage</mat-option>
+            <mat-option value="FORFAITAIRE">Forfaitaire</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-label>Tarif horaire</mat-label>
+        <mat-form-field appearance="outline" class="width-80">
+          <input
+            matInput
+            required
+            formControlName="tarifHoraire"
+          />
+          <span matTextSuffix>$</span>
+        </mat-form-field>
+
+        <mat-label>Estimation des coûts</mat-label>
+        <mat-form-field appearance="outline" class="width-80">
+          <input
+            matInput
+            required
+            formControlName="estimationPrix"
+          />
+          <span matTextSuffix>$</span>
+        </mat-form-field>
+        <div class="flex-row justify-end">
+          <button mat-icon-button type="submit"><mat-icon>send</mat-icon></button>
+          <button mat-icon-button (click)="onClose()"><mat-icon>close</mat-icon></button>
+        </div>
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+

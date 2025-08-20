@@ -1,0 +1,126 @@
+<app-site-nav>
+
+  <side-nav-content>
+    <app-site-nav-picker/>
+  </side-nav-content>
+
+  <div class="h-screen width-80 m-center">
+
+    <div class="flex-row full-width justify-start align-center gap-32 pt-32">
+      <img class="avatar" ngSrc="/default_avatar.png" alt="Avatar" height="256" width="256" priority/>
+        <div>
+          <h2 class="m-0">{{name.getRawValue()}}</h2>
+          <h5 class="m-0">{{getProfessionValue(profession())}}</h5>
+        </div>
+    </div>
+
+
+    <div class="l-1">
+
+    <div class="l-1 p-32 mt-64">
+      <h3 class="m-center w-content">Profile</h3>
+
+      <div class="flex-row gap-32 mt-32">
+        <mat-form-field class="full-width flex-1">
+          <mat-label>Nom</mat-label>
+          <input matInput [formControl]="name" placeholder="" value="" required/>
+          @if (name.invalid) {
+            <mat-error>{{nameErrorMessage()}}</mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field class="full-width flex-1">
+          <mat-label>Date de naissance</mat-label>
+          <input matInput [formControl]="birthdate"  [matDatepicker]="datePicker" required>
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="datePicker"></mat-datepicker-toggle>
+          <mat-datepicker #datePicker></mat-datepicker>
+          @if(birthdate.invalid){
+            <mat-error>{{birthdateErrorMessage()}}</mat-error>
+          }
+        </mat-form-field>
+      </div>
+      <div class="flex-row gap-32 mt-32">
+        <mat-form-field class="full-width flex-1">
+          <mat-label>Profession</mat-label>
+          <mat-select  [(value)]="profession">
+            <mat-option value="AVOCAT">Avocat(e)</mat-option>
+            <mat-option value="ADJOINT_JURIDIQUE">Adjoint(e) juridique</mat-option>
+            <mat-option value="STAGIAIRE">Stagiaire</mat-option>
+            <mat-option value="JUGE">Juge</mat-option>
+            <mat-option value="NOTAIRE">Notaire</mat-option>
+            <mat-option value="SECRETARIAT">Secretariat</mat-option>
+            <mat-option value="COMPTABLE">Comptable</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+    </div>
+
+        <div class="l-1 p-32 mt-64">
+          <h3 class="m-center w-content">Contact</h3>
+          <div class="flex-row gap-32 mt-32">
+            <mat-form-field class="full-width flex-1">
+              <mat-label>Courriel</mat-label>
+              <input matInput [formControl]="email" placeholder="" value="" required/>
+              @if (email.invalid) {
+                <mat-error>{{emailErrorMessage()}}</mat-error>
+              }
+
+            </mat-form-field>
+
+            <mat-form-field class="full-width flex-1">
+
+              <mat-label>Téléphone</mat-label>
+              <input [formControl]="phone" matInput placeholder="" value="" required/>
+              @if (phone.invalid) {
+                <mat-error>{{phoneErrorMessage()}}</mat-error>
+              }
+            </mat-form-field>
+
+          </div>
+        </div>
+
+
+        <div class="l-1 p-32 mt-64">
+          <h3 class="m-center w-content">Location</h3>
+          <div class="flex-row gap-32 mt-32">
+            <mat-form-field class="full-width flex-1">
+              <mat-label>Addresse</mat-label>
+              <input matInput [formControl]="address" placeholder="" value="" required/>
+              @if (address.invalid) {
+                <mat-error>{{addressErrorMessage()}}</mat-error>
+              }
+
+            </mat-form-field>
+          </div>
+
+
+          <div class="flex-row">
+            <mat-form-field class="full-width flex-1">
+
+              <mat-label>Ville</mat-label>
+              <input [formControl]="city" matInput placeholder="" value="" required/>
+              @if (city.invalid) {
+                <mat-error>{{cityErrorMessage()}}</mat-error>
+              }
+            </mat-form-field>
+            <mat-form-field class="full-width flex-1">
+              <mat-label>Code postal</mat-label>
+              <input [formControl]="postalcode" matInput placeholder="" value="" required/>
+              @if (postalcode.invalid) {
+                <mat-error>{{postalCodeErrorMessage()}}</mat-error>
+              }
+            </mat-form-field>
+          </div>
+        </div>
+
+      <div class="p-32">
+        <button [disabled]="isInvalideForm()" (click)="updateProfile()" mat-fab extended class="full-width">Soumettre</button>
+      </div>
+
+    </div>
+
+
+  </div>
+
+</app-site-nav>

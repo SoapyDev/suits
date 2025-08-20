@@ -1,0 +1,30 @@
+.profile-card {
+  max-width: 100%;
+  padding: 16px;
+  margin-bottom: 4em;
+  margin-right: 2em;
+}
+
+.field {
+  width: 100%;
+  margin-top: 1em;
+}
+
+mat-form-field {
+  margin-top: 1em;
+  width: 60%;
+}
+
+.success-hint {
+  color: green;
+  font-weight: bold;
+}
+
+.submitOrganisation {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.groupMember{
+  margin-left: 4em;
+}

@@ -1,0 +1,20 @@
+<mat-dialog-content>
+  <h3>Nouveau membre</h3>
+  <mat-form-field class="full-width mb-32">
+    <mat-label>Membre</mat-label>
+    <mat-select (selectionChange)="selectedMember.set($event.value)">
+      @for (current of getMembers(); track current.username){
+        <mat-option [value]="current">
+          <span>{{current.name}}</span>
+        </mat-option>
+      }
+    </mat-select>
+
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close (click)="onNoClick()">Annuler</button>
+  <button mat-button (click)="addMember()">Enregistrer</button>
+</mat-dialog-actions>
+
+

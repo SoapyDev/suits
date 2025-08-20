@@ -1,0 +1,162 @@
+<mat-dialog-content>
+  <h3>Nouveau dossier</h3>
+
+  <div class="flex-row gap-16">
+    <mat-form-field class="flex-1">
+      <mat-label>Prénom</mat-label>
+      <input matInput [formControl]="firstname" value="" required/>
+      @if(firstname.invalid){
+        <mat-error>{{firstnameErrorMessage()}}</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field class="flex-1">
+      <mat-label>Nom</mat-label>
+      <input matInput [formControl]="lastname" placeholder="" value="" required/>
+      @if(lastname.invalid){
+        <mat-error>{{lastnameErrorMessage()}}</mat-error>
+      }
+    </mat-form-field>
+  </div>
+
+  <div class="flex-row gap-16 mb-64">
+    <mat-form-field class="full-width">
+      <mat-label>Date de naissance</mat-label>
+      <input matInput [formControl]="birthdate"  [matDatepicker]="birthDate" required>
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="birthDate"></mat-datepicker-toggle>
+      <mat-datepicker #birthDate></mat-datepicker>
+      @if(birthdate.invalid){
+        <mat-error>{{birthdateErrorMessage()}}</mat-error>
+      }
+    </mat-form-field>
+  </div>
+
+
+  <div class="flex-row gap-16">
+    <mat-form-field class="flex-1">
+      <mat-label>Courriel</mat-label>
+      <input matInput [formControl]="email" placeholder="pat@example.com" value="" required/>
+      @if (email.invalid) {
+      <mat-error>{{emailErrorMessage()}}</mat-error>
+    }
+    </mat-form-field>
+
+    <mat-form-field class="flex-1">
+      <mat-label>Téléphone</mat-label>
+      <input [formControl]="phone" matInput placeholder="" value="" required/>
+      @if (phone.invalid) {
+        <mat-error>{{phoneErrorMessage()}}</mat-error>
+      }
+    </mat-form-field>
+  </div>
+
+
+  <div class="flex-row gap-16">
+    <mat-form-field class="flex-1">
+      <mat-label>Numéro civique</mat-label>
+      <input type="text" [formControl]="civicNumber" matInput placeholder="" value="" required/>
+      @if (civicNumber.invalid) {
+        <mat-error>{{civicNumberErrorMessage()}}</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field class="flex-1">
+      <mat-label>Rue</mat-label>
+      <input matInput [formControl]="streetName" placeholder="" value="" required/>
+      @if (streetName.invalid) {
+        <mat-error>{{streetNameErrorMessage()}}</mat-error>
+      }
+    </mat-form-field>
+  </div>
+
+  <div class="flex-row gap-16">
+    <mat-form-field class="flex-1">
+      <mat-label>Ville</mat-label>
+      <input matInput [formControl]="city" value="" required/>
+      @if (city.invalid) {
+        <mat-error>{{cityErrorMessage()}}</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field class="flex-1">
+      <mat-label>Province</mat-label>
+      <mat-select [(value)]="province" required>
+        <mat-option value="QC">Québec</mat-option>
+        <mat-option value="ON">Ontario</mat-option>
+        <mat-option value="MB">Manitoba</mat-option>
+        <mat-option value="SK">Saskatchewan</mat-option>
+        <mat-option value="AB">Alberta</mat-option>
+        <mat-option value="NS">Nouvelle-Écosse</mat-option>
+        <mat-option value="NB">Nouveau-Brunswick</mat-option>
+        <mat-option value="BC">Colombie-Britanique</mat-option>
+        <mat-option value="PEI">Île-du-Prince-Édouard</mat-option>
+        <mat-option value="NFLD">Terre-Neuve-et-Labrador</mat-option>
+        <mat-option value="YT">Yukon</mat-option>
+        <mat-option value="NU">Nunavut</mat-option>
+        <mat-option value="NT">Territoires du Nord-Ouest</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+
+    <div class="flex-row gap-16 mb-64">
+      <mat-form-field class="full-width">
+        <mat-label>Code postal</mat-label>
+        <input matInput [formControl]="postalcode" value="" required/>
+        @if (postalcode.invalid) {
+          <mat-error>{{postalCodeErrorMessage()}}</mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+
+  <div class="flex-row gap-16 mb-32 justify-center">
+    <div class="flex-1">
+      <p>Début du mandat</p>
+      <mat-card>
+        <mat-calendar [(selected)]="startDate"></mat-calendar>
+      </mat-card>
+    </div>
+
+    <div class="flex-1">
+      <p>Fin du mandat</p>
+      <mat-card>
+        <mat-calendar [(selected)]="endDate"></mat-calendar>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="flex-row gap-16 mb-64">
+    <mat-form-field class="flex-1">
+      <mat-label>Type d'entente</mat-label>
+      <mat-select required [(value)]="paymentAgreement">
+        <mat-option value="HORAIRE">Horaire</mat-option>
+        <mat-option value="POURCENTAGE">Pourcentage</mat-option>
+        <mat-option value="FORFAITAIRE">Forfaitaire</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="flex-1">
+      <mat-label>Domaine de droit</mat-label>
+      <mat-select required [(value)]="lawField">
+        <mat-option value="PENAL">Pénal</mat-option>
+        <mat-option value="FAMILIAL">Familial</mat-option>
+        <mat-option value="CIVIL">Civil</mat-option>
+        <mat-option value="ADMINISTRATIF">Administratif</mat-option>
+        <mat-option value="CONSTITUTIONNEL">Constitutionnel</mat-option>
+        <mat-option value="LOGEMENT">Logement</mat-option>
+        <mat-option value="JEUNESSE">Jeunesse</mat-option>
+        <mat-option value="TRAVAIL">Travail</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close (click)="onNoClick()">Annuler</button>
+  <button mat-button (click)="createLegalFile()">Enregistrer</button>
+</mat-dialog-actions>
+
+

@@ -1,0 +1,44 @@
+<div class="container flex-col nav-content gap-16 justify-start align-start l-1">
+
+
+  @if (cases.length === 0) {
+    <h4 class="full-width text-center">
+      Aucun dossier en cours
+    </h4>
+  }
+
+  @for (c of cases; track c.id) {
+
+    <div class="flex-row full-width justify-between overflow-x-auto overflow-y-hidden">
+
+        <mat-accordion class="full-width accordion">
+
+          <mat-expansion-panel>
+
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{c.id}}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+
+
+                <ng-container *ngFor="let task of get_tasks_by_caseId(c.id) | async; trackBy: trackByTaskId">
+
+                  <a href="/app/tasks/{{task.id}}" class="full-width flex-row justify-between align-center mb-8">
+                  <span>{{formatTitle(task.title!)}}</span>
+                  <span>{{formatDate(task.dueDate!)}}</span>
+                </a>
+                </ng-container>
+
+
+          </mat-expansion-panel>
+
+        </mat-accordion>
+
+
+
+    </div>
+
+  }
+
+</div>

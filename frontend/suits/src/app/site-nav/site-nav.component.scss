@@ -1,0 +1,25 @@
+.logo{
+  height: 84px;
+  width: 84px;
+}
+
+.logo-link{
+  text-decoration: none;
+}
+
+.logo-text{
+  font-size: 32px;
+  font-family: "Kaisei Tokumin", "Helvetica Neue", serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+#drawer{
+  max-width: 400px;
+}
+
+@media screen and (max-width: 720px){
+  #drawer{
+    max-width: 720px;
+  }
+}

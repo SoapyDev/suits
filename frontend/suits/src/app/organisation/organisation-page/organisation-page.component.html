@@ -1,0 +1,15 @@
+<app-site-nav>
+
+  <side-nav-content>
+    <app-site-nav-picker/>
+  </side-nav-content>
+
+  <app-organisation
+    [organisation]="organisation"
+    (onSubmit)="onSubmit($event)"
+    [showConfirmationError]="showConfirmationError"
+    [showSetOrganisationConfirmation]="showSetOrganisationConfirmation">
+    </app-organisation>
+
+</app-site-nav>
+

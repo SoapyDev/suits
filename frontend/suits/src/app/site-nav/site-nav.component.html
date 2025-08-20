@@ -1,0 +1,78 @@
+<main class="screen">
+
+  <mat-sidenav-container class="side-nav h-screen">
+
+    <mat-sidenav #drawer opened disableClose mode="side" id="drawer" class="w-screen h-screen w-max-500 fixed top">
+
+
+      <div class="sticky top">
+
+        @if(isMobile()){
+          <div class="full-width m-32 flex-row justify-end">
+            <button mat-button (click)="drawer.toggle()">
+              <mat-icon fontIcon="close"></mat-icon>
+            </button>
+          </div>
+        }
+
+        @if(isConnected()) {
+          <a href="/app/tasks" aria-description="Va à la page d'acceuil" class="logo-link">
+            <div class="flex-row p-8">
+              <picture>
+                <source srcset="logo.avif" type="image/avif">
+                <source srcset="logo.webp" type="image/webp">
+                <img ngSrc="logo.jpg" alt="S.U.I.T.S" width="64" height="64" priority class="logo"/>
+              </picture>
+              <h1 class="logo-text">S.U.I.T.S</h1>
+            </div>
+          </a>
+        }@else{
+          <a href="/" aria-description="Va à la page d'acceuil" class="logo-link">
+            <div class="flex-row p-8">
+              <picture>
+                <source srcset="logo.avif" type="image/avif">
+                <source srcset="logo.webp" type="image/webp">
+                <img ngSrc="logo.jpg" alt="S.U.I.T.S" width="64" height="64" priority class="logo"/>
+              </picture>
+              <h1 class="logo-text">S.U.I.T.S</h1>
+            </div>
+          </a>
+        }
+
+        <ng-content select="side-nav-content">
+          <div class="flex-col gap-16 p-32">
+            <a href="/login" aria-description="Va à la page de connexion" class="text-center" mat-button>Connexion</a>
+            <a href="/register/client" aria-description="Va à la page de création de compte client" class="text-center" mat-button>Nouveau client</a>
+            <a href="/register/professional" aria-description="Va à la page de création de compte utilisateur" class="text-center" mat-button>Nouveau professionnel</a>
+          </div>
+        </ng-content>
+      </div>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="h-screen w-auto relative">
+
+      @if(isMobile()){
+        <div class="full-width m-32 flex-row justify-end">
+          <button mat-button (click)="drawer.toggle()">
+            <mat-icon fontIcon="menu"></mat-icon>
+          </button>
+        </div>
+      }@else{
+        <button mat-button class="fixed top h-screen squared"  (click)="drawer.toggle();opened.set(!opened());">
+          @if(opened()){
+            <mat-icon fontIcon="chevron_left"></mat-icon>
+          }@else{
+            <mat-icon fontIcon="chevron_right"></mat-icon>
+          }
+        </button>
+      }
+
+      <ng-content></ng-content>
+
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+
+
+
+</main>

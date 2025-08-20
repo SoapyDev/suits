@@ -1,0 +1,124 @@
+<app-site-nav>
+
+  <side-nav-content>
+    <app-site-nav-picker/>
+  </side-nav-content>
+
+  <div class="h-screen width-80 m-center">
+    <div *ngIf="isLoading">Chargement...</div>
+    <div *ngIf="errorMessage" class="error-message">
+      <p>{{errorMessage}}</p>
+    </div>
+
+    <div *ngIf="task">
+
+
+    <div class="full-width flex-row justify-start align-center gap-0 no-wrap">
+            <app-status [status]="task.status!" (updateStatus)="onFieldChange('status', $event)"/>
+      <div class="flex-row justify-start gap-0 align-center full-width">
+        <h2 class="full-width flex-1" style="max-width: max-content">{{task.legalFileId}} : </h2>
+        <mat-form-field class="title width-80 flex-1">
+          <input matInput [(ngModel)]="task.title" (blur)="onFieldChange('title', task.title)" placeholder="Titre"  size="small"/>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="full-width p-8 l-1 rounded flex-row justify-between align-center mb-32">
+      <button mat-button [matMenuTriggerFor]="priorityMenu">
+          Priorité : {{priorityToString(task.priority!)}}
+      </button>
+
+        <mat-menu #priorityMenu="matMenu">
+            <button mat-menu-item (click)="onFieldChange('priority', 1)">Très basse</button>
+            <button mat-menu-item (click)="onFieldChange('priority', 2)">Basse</button>
+            <button mat-menu-item (click)="onFieldChange('priority', 3)">Normal</button>
+            <button mat-menu-item (click)="onFieldChange('priority', 4)">Haute</button>
+            <button mat-menu-item (click)="onFieldChange('priority', 5)">Très haute</button>
+        </mat-menu>
+
+      <div class="flex-row gap-16 align-center justify-between">
+        <div class="flex-row align-center">
+          Debut : {{task.startDate | date:'yyyy-MM-dd'}}
+          <input matInput [(ngModel)]="task.startDate"
+                 [matDatepicker]="startPicker"
+                 (ngModelChange)="onFieldChange('startDate', task.startDate)"
+                 class="hidden-input">
+            <mat-datepicker-toggle matIconSuffix [for]="startPicker"></mat-datepicker-toggle>
+            <mat-datepicker #startPicker></mat-datepicker>
+
+        </div>
+          <div class="flex-row align-center">
+            Fin : {{task.dueDate | date:'yyyy-MM-dd'}}
+
+            <input matInput [(ngModel)]="task.dueDate"
+                   [matDatepicker]="duePicker"
+                   (ngModelChange)="onFieldChange('dueDate', task.dueDate)"
+                   class="hidden-input">
+            <mat-datepicker-toggle matIconSuffix [for]="duePicker"></mat-datepicker-toggle>
+            <mat-datepicker #duePicker></mat-datepicker>
+
+        </div>
+      </div>
+    </div>
+
+    <h3>Description</h3>
+    <mat-divider />
+      <div class="l-1 rounded p-8 mt-16 mb-64 h-min-100">
+
+        <mat-form-field class="full-width description">
+          <textarea matInput placeholder="" [(ngModel)]="task.description" (blur)="onFieldChange('description', task.description)" ></textarea>
+        </mat-form-field>
+
+      </div>
+
+      <h3 class="full-width flex-row justify-between align-center">
+        <span>Responsable</span>
+      </h3>
+    <mat-divider/>
+
+    <div class="l-1 p-8 rounded mt-16 flex-row justify-between mb-64">
+      <div class="flex-row gap-64">
+        <mat-form-field>
+          <mat-label>Responsable</mat-label>
+          <mat-select [(ngModel)]="task.assignee.name" (selectionChange)="onFieldChange('assignee', getTeamMembersByName($event.value))" >
+            <mat-option *ngFor="let assignee of teamMembers" [value]="assignee.name">
+              {{ assignee.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <span>{{task.assignee.username}}</span>
+        <span>{{task.assignee.profession}}</span>
+      </div>
+    </div>
+
+    <h3 class="full-width flex-row justify-between align-center">
+      <span>Temps</span>
+      <button mat-icon-button aria-label="Ajouter temps" (click)="openTimeDialog()">
+        <mat-icon>add_2</mat-icon>
+      </button>
+    </h3>
+    <mat-divider/>
+    @for (loggedTime of task.taskTimes; track loggedTime.id) {
+      <app-logged-time [loggedTime]="loggedTime"/>
+    }
+
+    <div class="mb-64"></div>
+
+    <h3 class="full-width flex-row justify-between align-center">
+      <span>Notes</span>
+      <button mat-icon-button (click)="openNoteDialog()" aria-label="Ajouter note">
+        <mat-icon>add_2</mat-icon>
+      </button>
+    </h3>
+    <mat-divider/>
+    @for (note of task.taskNotes; track note.id) {
+      <app-note
+        [note]="note"
+        (noteUpdated)="updateNote($event)"
+        (noteDeleted)="deleteNote($event)">
+      </app-note>
+    }
+    </div>
+  </div>
+
+</app-site-nav>
